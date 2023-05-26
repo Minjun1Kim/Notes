@@ -38,17 +38,86 @@ Extreme Programming
 <img src="/images/p1.png" alt="Alt Text" style="width:50%;">
 
 
-
 ## Section 2
 
-### Subsection 2.1
+### Scrum Elements
+#### Product
+- Product Backlog
+- Sprint Backlog
 
-- Point 1
-- Point 2
-- Point 3
+#### Process
+- Sprint planning and backlog meeting
+- Daily scrum meeting
+- Sprint Retrospective
+- Sprint Review Meeting
 
-### Subsection 2.2
+<img src="/images/p2.png" alt="Alt Text" style="width:50%;">
 
-- Point 1
-- Point 2
-- Point 3
+#### Product Backlog/Sprint Backlog
+- Product backlog: all the features of the product
+- Sprint Backlog: all the features that will be worked on for that sprint. Should be broken down into discrete tasks.
+    - Refined
+    - Estimated
+    - Assigned to individual, who will work on the story
+    - Acceptance criteria should be clear
+- User stories are used in sprints to deliver work.
+
+- Scrum Meetings
+    - Sprint Planning Meeting
+        - Entire team decide together what to tackle for that sprint.
+    - Daily Scrum Meeting
+        - Quick meeting to touch base on:
+            Q. What did you do yesterday?
+            Q. What do you plan to do today?
+            Q. Do you need help?
+    - Sprint Retro: Review the sprint progress
+    - Sprint Review: Review the product
+
+#### Scrum Process
+ -> planning -> Implementation -> Review -> Retrospect ->
+
+Small Releases
+
+#### Twelve Principles of Agile
+Individuals and Interactions
+- 1. Projects are built around motivated individuals, who should be trusted.
+- 2. Face-to-face conversation is the best form of communication (co-location)
+- 3. Self-organizing teams
+Working Software
+- 4. Working software is delivered frequently (weeks rather than months)
+- 5. Working software is the principal measures of progess
+- 6. Sustainable development, able to maintain a constant pace.
+- 7. Continuous attention to technical excellence and good design.
+- 8. Simplicity: the art of maximizing the amount of work not done - is essential
+
+Customer Collaboration
+- 9. Customer satisfaction by rapid delivery of useful software.
+- 10. Close, daily cooperation between business people and developers.
+
+Responding to change
+- 11. Welcome changing requirements, even late in development
+- 12. Regular adaption to changing circumstances
+
+Pair programming Style
+- Driver/Navigator
+    - Driver types the code
+    - Navigator reviews the code as it's written
+- Ping-pong
+    - First developer writes a test
+    - Second developer writes a code to pass the test
+
+- Strong style
+    - Pair a junior programmer with senior one
+    - Senior programmer is navigator
+    - Junior programmer is driver
+
+- Test Driven Development
+    - Programmers write a failing unit test case for the simplest piece of functionality that you need to implement.
+    - Simplest code to pass the test
+    - Refactor the code to pass or meet the standards of the code.
+
+- Continuous Integration (CI)
+    - New code is integrated with the current system after no more than a few hours. When integrating, the system is built from scratch and all tests must pass or the changes
+
+- Continous Deployment (CD)
+    - is closely related to Continuous Integration and refers to keeping your application deployable at any point or even automatically releasing to a test or production environment if the latest version passes all automated tests.
