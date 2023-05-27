@@ -1,0 +1,700 @@
+<!DOCTYPE html><html><head>
+    <title>demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- <link rel="stylesheet" href="file:////Users/minjun/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.8/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css"> -->
+    
+    <style>
+    /**
+* prism.js Github theme based on GitHub's theme.
+* @author Sam Clarke
+*/
+code[class*="language-"],
+pre[class*="language-"] {
+color: #333;
+background: none;
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+text-align: left;
+white-space: pre;
+word-spacing: normal;
+word-break: normal;
+word-wrap: normal;
+line-height: 1.4;
+
+-moz-tab-size: 8;
+-o-tab-size: 8;
+tab-size: 8;
+
+-webkit-hyphens: none;
+-moz-hyphens: none;
+-ms-hyphens: none;
+hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+padding: .8em;
+overflow: auto;
+/* border: 1px solid #ddd; */
+border-radius: 3px;
+/* background: #fff; */
+background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+padding: .1em;
+border-radius: .3em;
+white-space: normal;
+background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+color: #969896;
+}
+
+.token.cdata {
+color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+color: #795da3;
+}
+
+.token.entity {
+cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+font-weight: bold;
+color: #1d3e81;
+}
+
+.token.list {
+color: #ed6a43;
+}
+
+.token.inserted {
+background-color: #eaffea;
+color: #55a532;
+}
+
+.token.deleted {
+background-color: #ffecec;
+color: #bd2c00;
+}
+
+.token.bold {
+font-weight: bold;
+}
+
+.token.italic {
+font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+color: #63a35c;
+}
+
+code.language-yaml {
+color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+color: #795da3;
+}
+
+.language-makefile .token.variable {
+color: #183691;
+}
+
+.language-makefile .token.builtin {
+color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+position: relative;
+padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+position: absolute;
+top: 0;
+left: 0;
+background-color: transparent;
+display: block;
+width: 100%;
+}
+
+pre[data-line] .line-highlight {
+position: absolute;
+left: 0;
+right: 0;
+padding: inherit 0;
+margin-top: 1em;
+background: hsla(24, 20%, 50%,.08);
+background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+pointer-events: none;
+line-height: inherit;
+white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+content: attr(data-start);
+position: absolute;
+top: .4em;
+left: .6em;
+min-width: 1em;
+padding: 0 .5em;
+background-color: hsla(24, 20%, 50%,.4);
+color: hsl(24, 20%, 95%);
+font: bold 65%/1.5 sans-serif;
+text-align: center;
+vertical-align: .3em;
+border-radius: 999px;
+text-shadow: none;
+box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+content: attr(data-end);
+top: auto;
+bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p,html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+    </style>
+  </head>
+
+  
+  <body for="html-export">
+    <div class="mume markdown-preview  ">
+    <h1 class="mume-header" id="span-stylecoloradd8e6assignment-3-system-monitoring-tool---concurrency--signalsspan"><span style="color:#ADD8E6">Assignment 3: System Monitoring Tool -- Concurrency &amp; Signals</span></h1>
+
+<div align="right"> Created by Minjun Kim </div>
+<h2 class="mume-header" id="span-stylecoloradd8e6table-of-contents-span"><span style="color:#ADD8E6">Table of Contents </span></h2>
+
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#problemsolving">Problem Solving</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<br>
+<p><a id="description" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6description-span"><span style="color:#ADD8E6">Description </span></h2>
+
+<p>This program displays information about the system, including the number of samples taken, the time delay between samples, memory usage, number of cores, CPU usage, and the current user sessions. THe program runs different queries concurrently. It retrieves the information by using system calls and reading from the /proc/stat file.</p>
+<br>
+<p><a id="requirements" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6requirements-span"><span style="color:#ADD8E6">Requirements </span></h2>
+
+<p>The program requires the following libraries to be installed: <br></p>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man3/stdio.3.html"><code>&lt;stdio.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/stdlib.h.0p.html"><code>&lt;stdlib.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/unistd.h.0p.html"><code>&lt;unistd.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/string.h.0p.html"><code>&lt;string.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/sys_utsname.h.0p.html"><code>&lt;sys/utsname.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man2/sysinfo.2.html"><code>&lt;sys/sysinfo.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/sys_resource.h.0p.html"><code>&lt;sys/resource.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man5/utmp.5.html"><code>&lt;utmp.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man3/getopt.3.html"><code>&lt;getopt.h&gt;</code></a><br></li>
+<li><a href="https://man7.org/linux/man-pages/man0/math.h.0p.html"><code>&lt;math.h&gt;</code></a> <br></li>
+<li><a href="https://man7.org/linux/man-pages/man7/signal.7.html"><code>&lt;signal.h&gt;</code></a> <br></li>
+<li><a href="https://man7.org/linux/man-pages/man2/wait.2.html"><code>&lt;sys/wait.h&gt;</code></a> <br></li>
+<li><a href="https://man7.org/linux/man-pages/man2/wait.2.html"><code>&lt;fcntl.h&gt;</code></a> <br></li>
+</ul>
+<p>and the header file: <br></p>
+<ul>
+<li><code>&quot;a3.h&apos;</code></li>
+</ul>
+<p>as well as the implementation files: <br></p>
+<ul>
+<li><code>main.c</code></li>
+<li><code>stats_functions.c</code></li>
+</ul>
+<p>also includes:</p>
+<ul>
+<li><code>Makefile</code></li>
+</ul>
+<br>
+<p><a id="usage" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6usagespan"><span style="color:#ADD8E6">Usage</span></h2>
+
+<p>To run the program, compile the code using the following Makefile command:</p>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ make
+</code></pre><p>And then run the executable:</p>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog
+</code></pre><p>The program also accepts several command line arguments such as: <br></p>
+<p><code>--system</code></p>
+<details>
+  <summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --system
+</code></pre><ul>
+<li>to indicate that only the system usage should be generated.</li>
+</ul>
+</details>
+<br>
+<p><code>--user</code></p>
+<details>
+  <summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --user
+</code></pre><ul>
+<li>to indicate that only the users usage should be generated.</li>
+</ul>
+</details>
+<br>
+<p><code>--graphics</code></p>
+<details>
+<summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --graphics
+</code></pre><p>OR</p>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog -g
+</code></pre><ul>
+<li>to include graphical output in the cases where a graphical outcome is possible.</li>
+</ul>
+</details>
+<br>
+<p><code>--sequential</code></p>
+<details>
+<summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --sequential
+</code></pre><p>OR</p>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog -q
+</code></pre><ul>
+<li>to indicate that the information will be output sequentially without needing to &quot;refresh&quot; the screen.</li>
+</ul>
+</details>
+<br>
+<p><code>--samples=N</code></p>
+<details>
+<summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --samples=8
+</code></pre><ul>
+<li>to indicate the number of times (N) the statistics are going to be collected and results will be reported based on the N number of iterations.</li>
+<li>Note: if value is not indicated, the default value of 10 samples will be used.</li>
+</ul>
+</details>
+<br>
+<p><code>--tdelay=T</code></p>
+<details>
+<summary>Click to expand</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --tdelay=2
+</code></pre><ul>
+<li>to indicate how frequently to sample in seconds.</li>
+<li>Note: if value is not indicated, the default value of 1 second will be used.</li>
+</ul>
+</details>
+<br>
+<details>
+<summary>Multiple Arguments</summary>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog --system --user -q -g 5 2
+</code></pre><ul>
+<li>prints sequentially 5 graphical samples of cpu, system, and user information with 2 seconds of delay in between.</li>
+<li>sample number and tdelay are positional arguments in this order.</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>It is my design choice not to show graphics when the following command is entered:</p>
+<pre data-role="codeBlock" data-info="console" class="language-console"><code>$ ./prog     --user --graphics
+</code></pre><p>as I understood the following instruction to be only concerned with the users part and not CPU usage:</p>
+<blockquote>
+<p><code>--user</code>: to indicate that only the users usage should be generated</p>
+</blockquote>
+</li>
+</ul>
+</details>
+<br>
+<p>Extra CDTs Used</p>
+<ul>
+<li>
+<p><code>mem_struct</code><br>
+<br></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-char">char</span> mem_str<span class="token punctuation">[</span>MAX_LEN<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-double">double</span> virt_used<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> mem_struct<span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p><code>cpu_struct</code><br>
+<br></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">table</span><span class="token punctuation">{</span>
+  <span class="token class-name">pid_t</span> pid<span class="token punctuation">;</span> <span class="token comment">// process id</span>
+  <span class="token keyword keyword-int">int</span> fd<span class="token punctuation">;</span> <span class="token comment">// file descriptor</span>
+  <span class="token keyword keyword-int">int</span> fd_count<span class="token punctuation">;</span>  <span class="token comment">// number of file descriptors associated with the process</span>
+  <span class="token keyword keyword-char">char</span> fname<span class="token punctuation">[</span>MAX_LEN<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment">// symbolic link path name or canonical path name</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> inode<span class="token punctuation">;</span>    <span class="token comment">// inode number</span>
+  <span class="token keyword keyword-struct">struct</span> <span class="token class-name">table</span> <span class="token operator">*</span>next<span class="token punctuation">;</span> <span class="token comment">// pointer to next node</span>
+<span class="token punctuation">}</span> c_table<span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p><code>cpu_struct</code><br>
+<br></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> user<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> nice<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> system<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> idle<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> iowait<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> irq<span class="token punctuation">;</span>
+  <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> softirq<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> cpu_struct<span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p><code>User</code><br>
+<br></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">user</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-char">char</span> line<span class="token punctuation">[</span>UT_LINESIZE <span class="token operator">+</span> UT_NAMESIZE <span class="token operator">+</span> UT_HOSTSIZE <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-struct">struct</span> <span class="token class-name">user</span> <span class="token operator">*</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> User<span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p><code>sample</code><br>
+<br></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">sample</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-double">double</span> prev_virt<span class="token punctuation">;</span> <span class="token comment">// previous virtual memory</span>
+  <span class="token keyword keyword-double">double</span> cur_virt<span class="token punctuation">;</span> <span class="token comment">// current virtual memory</span>
+<span class="token punctuation">}</span> sample<span class="token punctuation">;</span>
+</pre></li>
+</ul>
+<p><a id="functions" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6functionsspan"><span style="color:#ADD8E6">Functions</span></h2>
+
+<ul>
+<li>
+<p>Implemented/defined in <code>main.c</code></p>
+<ul>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Function to handle the SIGINT signal. Takes a single parameter, &apos;sig&apos; (representing the signal number).
+* The function prints a message to the user asking if they want to quit the program. If the user enters
+* &apos;y&apos; or &apos;Y&apos;, the program exits. If the user enters &apos;n&apos; or &apos;N&apos;, the program continues to run.
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">sigint_handler</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Function to handle the SIGTSTP signal. Takes a single parameter, &apos;sig&apos; (representing the signal number).
+* Ignores the signal, allowing the program to continue running.
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">sigtstp_handler</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sig<span class="token punctuation">)</span> 
+</pre></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Implemented/defined in <code>stats_functions.c</code></p>
+<ul>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/**
+* @brief Write the memory information to the pipe.
+* @param write_fd the file descriptor to write to
+* @param prev_virt the previous virtual memory
+* @param str the string to write to the pipe
+* @param i the index of the sample
+* @param graphics the graphics flag
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">write_memory_pipe</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> write_fd<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> <span class="token operator">*</span>prev_virt<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> str<span class="token punctuation">[</span>MAX_LEN<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> graphics<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/**
+* @brief Write the memory information to the pipe.
+* @param str the string to write to the pipe
+* @param i the index of the sample
+* @return double the virtual memory used
+*/</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">write_memory</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> str<span class="token punctuation">[</span>MAX_LEN<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/**
+* @brief Enqueue a newly allocated and initialized User node to the tail of the users &apos;q&apos; in O(1) time
+* @param q the queue to enqueue to
+* @param line the string to store to the node that we enqueue
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">enqueue</span><span class="token punctuation">(</span>users <span class="token operator">*</span>q<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> line<span class="token punctuation">[</span>UT_LINESIZE <span class="token operator">+</span> UT_NAMESIZE <span class="token operator">+</span> UT_HOSTSIZE <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Allocate and initialize a new User queue
+* @param None
+* @return users* the allocated queue
+*/</span>
+users <span class="token operator">*</span><span class="token function">setUp</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Write the user information to the pipe.
+* @param write_fd the file descriptor to write to
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">write_users_pipe</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> write_fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Read the user information from the pipe.
+* @param read_fd the file descriptor to read from
+* @return users* the queue of users
+*/</span>
+users<span class="token operator">*</span> <span class="token function">read_users_pipe</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> read_fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Write the cpu information to the pipe.
+* @param write_fd the file descriptor to write to
+* @param prev the previous cpu struct
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">write_cpu_pipe</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> write_fd<span class="token punctuation">,</span> cpu_struct <span class="token operator">*</span>prev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Delete the users in the queue.
+* @param queue the queue to delete
+* @return users* the queue of users
+*/</span>
+users <span class="token operator">*</span><span class="token function">delete_users</span><span class="token punctuation">(</span>users <span class="token operator">*</span>queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* display the header of the program
+* @param i the index of the sample
+* @param sequential the sequential flag
+* @param samples the number of samples
+* @param tdelay the delay between samples
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">display_header</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> sequential<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> samples<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> tdelay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Print the number of cores.
+* @param None
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print_cores</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Set the cpu values.
+* @param sample the cpu struct to set
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">set_cpu_values</span><span class="token punctuation">(</span>cpu_struct <span class="token operator">*</span>sample<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Calculate the cpu usage.
+* @param prev the previous cpu struct
+* @param cur the current cpu struct
+* @return double the cpu usage
+*/</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">calculate_cpu_usage</span><span class="token punctuation">(</span>cpu_struct <span class="token operator">*</span>prev<span class="token punctuation">,</span> cpu_struct <span class="token operator">*</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Print the users in the queue.
+* @param queue the queue to print
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print_users</span><span class="token punctuation">(</span>users <span class="token operator">*</span>queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Print the machine information.
+* @param None
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print_machine_info</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Modify the memory graphics.
+* @param i the index of the sample
+* @param virt_used the virtual memory used
+* @param prev_virt the previous virtual memory
+* @param strArr the array of strings to modify
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">modify_memory_graphics</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> virt_used<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> <span class="token operator">*</span>prev_virt<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> strArr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Display the memory string at strArr[i].
+* @param sequential the sequential flag
+* @param samples the number of samples
+* @param i the index of the sample
+* @param strArr the array of strings to display
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">display_memory_line</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sequential<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> samples<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> strArr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/**
+* @brief Display the cpu string at cpuArr[i].
+* @param sequential the sequential flag
+* @param samples the number of samples
+* @param i the index of the sample
+* @param cpuArr the array of strings to display
+* @return None
+*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">cpu_graphics</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> cpuArr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> sequential<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>num_bar<span class="token punctuation">,</span> <span class="token keyword keyword-float">float</span> cur_cpu_usage<span class="token punctuation">,</span> <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>prev_cpu_usage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+</ul>
+</li>
+</ul>
+<br>
+<p><a id="problemsolving" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6problem-solvingspan"><span style="color:#ADD8E6">Problem Solving</span></h2>
+
+<ul>
+<li>
+<p>How did I solve the problem(s)?</p>
+<ul>
+<li>
+<p>I solved the problem of implementing concurrency by attending multiple office hours held by the TAs and the instructor and by confirming my idea and implementation details with them. I thought of two approaches to solve the problem and chose the approach that made the most sense to me, which was to fork the processes in the main for loop and write to the appropriate pipe from the child processes, and in the main, wait for the processes to have finished their queries and read the necessary data from the pipe. When I first started the assignment, I was not very familiar with the idea of pipes, so I had to spend some time reviewing the concepts to get a good grasp of the communication methods.</p>
+</li>
+<li>
+<p>To achieve concurrency, I had to modify my assignment 1 code and split the functions even further to enhance modularity and separation of tasks/queries based on writing and reading perspectives of the pipes. I also had to add additional structs to keep track of previous memory and cpu values. Fortunately, I took some time to read the manual pages that were provided in the assignment handout thoroughly, and asking the TAs for confirmation about the correct usage, I was able to use them and implement the required functionalities for my program.</p>
+</li>
+<li>
+<p>Most importantly, I approached most problems I&apos;d encountered by analyzing the behaviour of the program provided in Marcelo&apos;s video and brainstorming about how to solve the problem in my head before starting coding. For example, for the CPU graphics part and the number of bars that change with each iteration, I observed the pattern in the video and came up with the solution of taking the difference of the integer parts of the float current and previous CPU usage values and typecast the result to get the needed number of bars. Everything made sense when I took the time to think and brainstorm solutions. Lastly, office hours helped a lot with my understanding of some unclear instructions in the handout.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a id="notes" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6notesspan"><span style="color:#ADD8E6">Notes</span></h2>
+
+<ul>
+<li>
+<p>The utility only works on Linux systems.</p>
+</li>
+<li>
+<p>Entering ctrl + z repeatedly with minimal real time delay in between causes the program to speed up and ignore the sleep feature between samples. I went to Marcelo&apos;s office hours and he concluded based on my implementation that this is fine so long as I explain why this happens in my README file.</p>
+</li>
+<li>
+<p>Explanation: The ctrl + z handler returns without doing anything and returns the execution control after the sleep call, therefore having an effect where it seems like the program is not sleeping. However, it does all the new calculations and updates the values accordingly without sleeping.</p>
+</li>
+<li>
+<p>The program uses the <code>/proc/stat</code> file to obtain information about the system, including CPU usage. The file is constantly updated by the system, so the information displayed may change over time.</p>
+</li>
+<li>
+<p>Was told by Marcelo that it is okay to use the <code>sysconf</code> function for counting the number of cores, instead of counting the number of cpu lines in /proc/stat</p>
+</li>
+<li>
+<p>The code assumes that there are at most 2 non-option arguments and that they must appear in the order samples then tdelay. If there are more or fewer arguments, or if they appear in a different order, the code might not work as intended.</p>
+</li>
+</ul>
+<p><a id="references" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6referencesspan"><span style="color:#ADD8E6">References</span></h2>
+
+<ul>
+<li>Reading /proc/stat: <a href="https://www.kgoettler.com/post/proc-stat/">kgottler</a></li>
+<li>Understanding cpu usage: <a href="https://www.opsdash.com/blog/cpu-usage-linux.html">OpsDash</a></li>
+<li>getopt(3) &#x2014; <a href="https://man7.org/linux/man-pages/man3/getopt.3.html">Linux manual page</a></li>
+<li>Linux C library manual pages as linked in <a href="#requirements">requirements</a></li>
+</ul>
+<p><a id="contact" href></a></p>
+<h2 class="mume-header" id="span-stylecoloradd8e6contactspan"><span style="color:#ADD8E6">Contact</span></h2>
+
+<ul>
+<li>creator: Minjun Kim</li>
+<li>email address: <a href="mailto:minjunn.kim@mail.utoronto.ca">minjunn.kim@mail.utoronto.ca</a></li>
+</ul>
+
+    </div>
+    
+  </body></html>
