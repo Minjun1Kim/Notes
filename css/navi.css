@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex;
+  }
+  .sidebar {
+    background-color: #333;
+    padding: 20px;
+    width: 200px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+  }
+  .content {
+    padding: 20px;
+    flex: 1;
+  }
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  .sidebar li:first-child {
+    margin-top: 60px; /* Adjust the margin-top value as needed */
+  }
+  .sidebar li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .sidebar input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .content h1 {
+    color: #fff;
+  }
+  .content p {
+    color: #ccc;
+  }
