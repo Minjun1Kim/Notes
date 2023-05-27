@@ -1,8 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex;
+  }
+  .sidebar {
+    background-color: #333;
+    padding: 20px;
+    width: 200px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+  }
+  .content {
+    padding: 20px;
+    flex: 1;
+  }
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  .sidebar li:first-child {
+    margin-top: 60px; /* Adjust the margin-top value as needed */
+  }
+  .sidebar li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .sidebar input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .content h1 {
+    color: #fff;
+  }
+  .content p {
+    color: #ccc;
+  }
+  
+  .sidebar .sub-menu {
+    display: none;
+    padding-left: 20px;
+    margin-top: 0px;
+  }
+  
+  .sidebar .has-dropdown.active .sub-menu {
+    display: block;
+  }
+  
+  .sidebar .has-dropdown > a::after {
+    content: '\25BC';
+    display: inline-block;
+    margin-left: 5px;
+  }
+  
+  .sidebar .sub-menu li {
+    margin-bottom: 2px;
+    margin-top: 2px;
+  }
+  
+  .sidebar .sub-menu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .sidebar .sub-menu a:hover {
+    color: #ffcc00;
+  }
+
+  .sidebar ul li.has-dropdown {
+    margin-bottom: 2; /* Remove the default margin-bottom */
+  }
+
+.sidebar ul li a:hover,
+.sidebar .has-dropdown > a:hover {
+  color: #1ccfee;
+}
+
+  </style>
   <title>Notes Page</title>
-    <link rel="stylesheet" type="text/css" href="/navi.css">
+    <!-- <link rel="stylesheet" type="text/css" href="navi.css"> -->
 </head>
 <body>
   <div class="container">
