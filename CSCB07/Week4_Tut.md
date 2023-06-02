@@ -210,7 +210,7 @@ In the examples above, the first one uses PrintStream to write lines of text to 
 ## <span style="color:#ADD8E6"> Lab 2 </span> 
 
 Instructions:
-https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065
+[Handout](https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065){:target="_blank"}
 
 
 Commands you need for the lab:
@@ -235,5 +235,5 @@ It's worth noting that the first time you push a branch to a remote repository, 
 <a id="tutorial"></a>
 ## <span style="color:#ADD8E6"> Tutorial </span> 
 
-  Attendance: [Fill out form](https://docs.google.com/forms/d/e/1FAIpQLSeo4JVJdWw9cfjICCqiIwgPQPLr7dOYpgyRjGvtB2h9iWozbg/viewform?usp=sf_link)
+  Attendance: [Fill out form](https://docs.google.com/forms/d/e/1FAIpQLSeo4JVJdWw9cfjICCqiIwgPQPLr7dOYpgyRjGvtB2h9iWozbg/viewform?usp=sf_link){:target="_blank"}
   
