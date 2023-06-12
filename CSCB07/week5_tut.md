@@ -5,15 +5,42 @@
 
 ## <span style="color:#ADD8E6">Table of Contents </span> 
 - [OOP Notes](#notes)
-  - [arrays](#arrays)
-  - [I/O](#IO)
+  - [inheritance](#inheritance)
+  - [polymorphism](#poly)
+  - [encapsulation](#encap)
+  - [Method overloading/overriding](#method)
+  - 
+  
 - [Lab](#lab)
 - [Tutorial](#tutorial)
 
 <a id="notes"></a>
-## <span style="color:#ADD8E6"> OOP Notes </span> 
+## <span style="color:#ADD8E6"> Object-oriented Programming Notes </span> 
 
-<a id="arrays"></a>
+<a id="visibility"></a>
+### <span style="color:#ADD8E6">Class Visibility </span> 
+
+There are four access modifiers in Java: public, protected, default (no modifier), and private. These modifiers control the visibility of classes, fields, and methods within a program.
+
+1. `public`:
+A public class is accessible from any other class in the program, regardless of the package it belongs to. It allows the class to be used by other classes and packages.
+
+2. `protected`:
+A protected class is accessible within the same package and can be accessed by subclasses (even if they are in a different package). It provides a level of encapsulation and inheritance.
+
+3. Default (no modifier):
+A class without any access modifier (default visibility) is accessible within the same package only. It is not accessible outside the package.
+```java
+class DefaultClass {
+    // Class members and methods
+}
+```
+
+4. `private`:
+A private class is accessible only within the same class. It provides the highest level of encapsulation and restricts access from any other class.
+
+
+<a id="inheritance"></a>
 ### <span style="color:#ADD8E6">Inheritance </span> 
 
 - Inheritance is a mechanism in Java that allows a class (called the child or subclass) to inherit the properties and methods of another class (called the parent or superclass). The child class can then extend or modify the inherited behavior while retaining the existing functionality.
@@ -51,7 +78,7 @@ public class Main {
 ```
 
 
-<a id="IO"></a>
+<a id="poly"></a>
 ### <span style="color:#ADD8E6">Polymorphism</span> 
 
 Polymorphism allows objects of different classes to be treated as objects of a common superclass. It enables methods to be overridden in subclasses and called based on the actual object type at runtime, achieving different behaviors for different objects.
@@ -88,6 +115,7 @@ public class Main {
 }
 ```
 
+<a id="encap"></a>
 ### <span style="color:#ADD8E6"> Encapsulation </span> 
 
 Encapsulation is a concept that bundles data and methods within a class, hiding the internal details and providing access to them through public methods. It helps in data protection and code maintainability.
@@ -128,7 +156,7 @@ public class Main {
 }
 ```
 
-
+<a id="method"></a>
 ### <span style="color:#ADD8E6"> Method Overloading and Overriding: </span> 
 
 Method overloading refers to having multiple methods with the same name but different parameters in the same class. <br/>
@@ -229,6 +257,7 @@ public class Main {
     }
 }
 ```
+
 
 ### <span style="color:#ADD8E6">Generics</span> 
 Generics allow the creation of classes, interfaces, and methods that can work with different types, specified at compile-time. They provide type safety and enable code reusability.
@@ -376,6 +405,40 @@ public class Main {
 }
 ```
 
+LinkedHashSet Class:
+The LinkedHashSet class is an implementation of the Set interface that maintains the insertion order of elements. It is implemented as a hash table with a linked list running through it, allowing fast iteration. The elements in a LinkedHashSet are ordered based on the order of insertion.
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedHashSet<String> cities = new LinkedHashSet<>();
+        
+        // Adding elements
+        cities.add("London");
+        cities.add("Paris");
+        cities.add("New York");
+        
+        // Checking for presence
+        System.out.println(cities.contains("Paris")); // Output: true
+        
+        // Removing elements
+        cities.remove("London");
+        
+        // Iterating over the elements
+        for (String city : cities) {
+            System.out.println(city);
+        }
+        
+        // Checking the size
+        System.out.println("Size: " + cities.size()); // Output: 2
+    }
+}
+```
+
+
+
 <a id="lab"></a>
 ## <span style="color:#ADD8E6"> Lab 3 </span> 
 
@@ -386,6 +449,6 @@ Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?
 <a id="tutorial"></a>
 ## <span style="color:#ADD8E6"> Tutorial </span> 
   
-  Attendance: <a href="https://docs.google.com/forms/d/e/1FAIpQLSeo4JVJdWw9cfjICCqiIwgPQPLr7dOYpgyRjGvtB2h9iWozbg/viewform?usp=sf_link" target="_blank">Fill out form</a>
+  Attendance: <a href="https://forms.gle/i5BLbDMA1yb6AYwJ7" target="_blank">Fill out form</a>
 
   
