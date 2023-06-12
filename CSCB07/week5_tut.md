@@ -9,7 +9,9 @@
   - [polymorphism](#poly)
   - [encapsulation](#encap)
   - [Method overloading/overriding](#method)
-  - 
+  - [Abstract Classes](#abstract)
+  - [Interfaces](#interfaces)
+  - [Generics](#generics)
   
 - [Lab](#lab)
 - [Tutorial](#tutorial)
@@ -195,6 +197,7 @@ public class Main {
 
 ```
 
+<a id="abstract"></a>
 ### <span style="color:#ADD8E6">Abstract Classes </span> 
 An abstract class is a class that cannot be instantiated and can contain both regular methods and abstract methods (without implementation). 
 It serves as a blueprint for its subclasses, which must provide implementations for the abstract methods.
@@ -225,6 +228,7 @@ public class Main {
 }
 ```
 
+<a id="interfaces"></a>
 ### <span style="color:#ADD8E6">Interfaces </span> 
 An interface is a collection of abstract methods. It defines a contract that classes must adhere to by implementing the methods declared in the interface. Multiple interfaces can be implemented by a class.
 
@@ -258,7 +262,7 @@ public class Main {
 }
 ```
 
-
+<a id="generics"></a>
 ### <span style="color:#ADD8E6">Generics</span> 
 Generics allow the creation of classes, interfaces, and methods that can work with different types, specified at compile-time. They provide type safety and enable code reusability.
 ```java
