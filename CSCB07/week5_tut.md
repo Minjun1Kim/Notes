@@ -16,216 +16,371 @@
 <a id="arrays"></a>
 ### <span style="color:#ADD8E6">Inheritance </span> 
 
-- 
+- Inheritance is a mechanism in Java that allows a class (called the child or subclass) to inherit the properties and methods of another class (called the parent or superclass). The child class can then extend or modify the inherited behavior while retaining the existing functionality.
 
-To create an array and allocate memory, use the new keyword.
+In Java, we use the `extends` keyword for inheritance.
 ```java
-int[] grades;
-grades = new int[10];
+class Child extends Parent {
+ ...
+}
 ```
 
-Alternatively, you can declare and create an array in a single line.
-```java
-int[] grades = new int[10];
+Example:
 ```
-
-You can access individual elements of an array using their index.
-```java
-grades[index] = score;   // Assign value to an element
-score = grades[index];   // Retrieve value from an element
-```
-
-Arrays have a length property that returns the number of elements in the array.
-```java
-int length = grades.length;
-```
-
-Arrays can be looped over using a for loop or a foreach loop.
-```java
-for (int i = 0; i < grades.length; i++) {
-    // Access array elements using grades[i]
+// Parent class
+class Animal {
+    void eat() {
+        System.out.println("The animal is eating.");
+    }
 }
 
-// or
+// Child class inheriting from Animal
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog is barking.");
+    }
+}
 
-for (int score : grades) {
-    // Access array elements using score
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat(); // Inherited from Animal
+        dog.bark(); // Defined in Dog class
+    }
 }
 ```
 
 
 <a id="IO"></a>
-### <span style="color:#ADD8E6">Input and Output Operations in Java</span> 
+### <span style="color:#ADD8E6">Polymorphism</span> 
 
-Java provides various classes and methods for performing input and output operations. Here are some commonly used components:
-
-`System.in` represents the standard input stream, which allows reading input from the user. <br>
-`System.out` represents the standard output stream, which is used for displaying output to the console. <br>
-
-
-Example: Reading input from the user using System.in and printing output using System.out.
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. It enables methods to be overridden in subclasses and called based on the actual object type at runtime, achieving different behaviors for different objects.
 
 ```java
-import java.util.Scanner;
+// Parent class
+class Animal {
+    void makeSound() {
+        System.out.println("The animal makes a sound.");
+    }
+}
 
-public class InputOutputExample {
+// Child classes overriding the makeSound() method
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("The dog barks.");
+    }
+}
+
+class Cat extends Animal {
+    void makeSound() {
+        System.out.println("The cat meows.");
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-
-        System.out.println("Hello, " + name + "!");
-
-        scanner.close();
+        Animal animal1 = new Dog();
+        Animal animal2 = new Cat();
+        
+        animal1.makeSound(); // Calls Dog's makeSound()
+        animal2.makeSound(); // Calls Cat's makeSound()
     }
 }
 ```
 
-### <span style="color:#ADD8E6"> The File class </span> 
+### <span style="color:#ADD8E6"> Encapsulation </span> 
 
-The File class in Java provides methods for working with files and directories. <br>
-It can be used to perform operations such as creating files, deleting files, checking file existence, listing files in a directory, etc. <br>
+Encapsulation is a concept that bundles data and methods within a class, hiding the internal details and providing access to them through public methods. It helps in data protection and code maintainability.
 
-Commonly used methods of the File class: <br>
 
 ```java
-boolean createNewFile(); //Creates a new file and returns true if the file is successfully created.
-boolean delete(); //Deletes the file or directory and returns true if the operation is successful.
-boolean exists(); //Checks if the file or directory exists.
-boolean isDirectory(); //Checks if the given file is a directory.
-File[] listFiles(); //Returns an array of File objects representing the files and directories in the given directory.
+class Person {
+    private String name;
+    private int age;
+    
+    // Getter and setter methods
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("John");
+        person.setAge(25);
+        
+        System.out.println("Name: " + person.getName());
+        System.out.println("Age: " + person.getAge());
+    }
+}
 ```
 
-Example: Performing file operations using the File class.
+
+### <span style="color:#ADD8E6"> Method Overloading and Overriding: </span> 
+
+Method overloading refers to having multiple methods with the same name but different parameters in the same class. <br/>
+Method overriding occurs when a subclass provides its own implementation of a method defined in the superclass.
+
 ```java
-import java.io.File;
-import java.io.IOException;
+// Parent class
+class Shape {
+    void draw() {
+        System.out.println("Drawing a shape.");
+    }
+    
+    void draw(String color) {
+        System.out.println("Drawing a " + color + " shape.");
+    }
+}
 
-public class FileExample {
+// Child class overriding the draw() method
+class Circle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing a circle.");
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
-        try {
-            // Create a new file
-            File file = new File("myfile.txt");
-            boolean created = file.createNewFile();
-            System.out.println("File created: " + created);
+        Shape shape = new Shape();
+        shape.draw(); // Calls the draw() method in Shape
+        
+        Circle circle = new Circle();
+        circle.draw(); // Calls the draw() method in Circle
+        circle.draw("red"); // Calls the overloaded draw() method in Shape
+    }
+}
 
-            // Check if the file exists
-            boolean exists = file.exists();
-            System.out.println("File exists: " + exists);
+```
 
-            // Check if the file is a directory
-            boolean isDirectory = file.isDirectory();
-            System.out.println("Is a directory: " + isDirectory);
+### <span style="color:#ADD8E6">Abstract Classes </span> 
+An abstract class is a class that cannot be instantiated and can contain both regular methods and abstract methods (without implementation). 
+It serves as a blueprint for its subclasses, which must provide implementations for the abstract methods.
 
-            // Delete the file
-            boolean deleted = file.delete();
-            System.out.println("File deleted: " + deleted);
-        } catch (IOException e) {
-            e.printStackTrace();
+```java
+// Abstract class
+abstract class Shape {
+    abstract void draw();
+    
+    void display() {
+        System.out.println("Displaying the shape.");
+    }
+}
+
+// Concrete class extending the abstract class
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing a circle.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circle circle = new Circle();
+        circle.draw();
+        circle.display();
+    }
+}
+```
+
+### <span style="color:#ADD8E6">Interfaces </span> 
+An interface is a collection of abstract methods. It defines a contract that classes must adhere to by implementing the methods declared in the interface. Multiple interfaces can be implemented by a class.
+
+```java
+// Interface
+interface Animal {
+    void makeSound();
+}
+
+// Class implementing the Animal interface
+class Dog implements Animal {
+    public void makeSound() {
+        System.out.println("The dog barks.");
+    }
+}
+
+class Cat implements Animal {
+    public void makeSound() {
+        System.out.println("The cat meows.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog();
+        dog.makeSound();
+        
+        Animal cat = new Cat();
+        cat.makeSound();
+    }
+}
+```
+
+### <span style="color:#ADD8E6">Generics</span> 
+Generics allow the creation of classes, interfaces, and methods that can work with different types, specified at compile-time. They provide type safety and enable code reusability.
+```java
+// Generic class
+class Box<T> {
+    private T content;
+    
+    public void setContent(T content) {
+        this.content = content;
+    }
+    
+    public T getContent() {
+        return content;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box<String> stringBox = new Box<>();
+        stringBox.setContent("Hello");
+        String str = stringBox.getContent();
+        
+        Box<Integer> intBox = new Box<>();
+        intBox.setContent(10);
+        int num = intBox.getContent();
+        
+        System.out.println(str);
+        System.out.println(num);
+    }
+}
+```
+
+1. Comparable Interface:
+The Comparable interface allows objects to be compared to each other for ordering. It contains a single method, compareTo(), which defines the natural ordering of objects. <br/>
+Classes that implement Comparable can be sorted using methods like Collections.sort() or Arrays.sort().
+
+```java
+import java.util.*;
+
+// Custom class implementing Comparable
+class Person implements Comparable<Person> {
+    private String name;
+    private int age;
+    
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Implementing the compareTo() method
+    public int compareTo(Person other) {
+        return this.age - other.age; // Comparing based on age
+    }
+    
+    public String toString() {
+        return name + " (" + age + ")";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Person> people = new ArrayList<>();
+        people.add(new Person("Alice", 25));
+        people.add(new Person("Bob", 30));
+        people.add(new Person("Charlie", 20));
+        
+        Collections.sort(people); // Sorting the list based on age
+        
+        for (Person person : people) {
+            System.out.println(person);
         }
     }
 }
 ```
 
-#### <span style="color:#ADD8E6"> Reading and Writing Files </span> 
+2. ArrayList Class:
+The ArrayList class is an implementation of the List interface that provides dynamic arrays. It allows elements to be added, removed, and accessed using index-based operations. <br/>
+The size of an ArrayList grows dynamically as elements are added.
 
-Reading and writing files can be done in different ways in Java.
-
-Example: Reading a file using the BufferedReader class.
 ```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.*;
 
-public class ReadFileExample {
+public class Main {
     public static void main(String[] args) {
-        try {
-            BufferedReader input = new BufferedReader(new FileReader("myfile.txt"));
-            String line;
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        ArrayList<String> fruits = new ArrayList<>();
+        
+        // Adding elements
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Orange");
+        
+        // Accessing elements
+        System.out.println(fruits.get(1)); // Output: Banana
+        
+        // Modifying elements
+        fruits.set(0, "Mango");
+        
+        // Removing elements
+        fruits.remove(2);
+        
+        // Iterating over the elements
+        for (String fruit : fruits) {
+            System.out.println(fruit);
         }
+        
+        // Checking the size
+        System.out.println("Size: " + fruits.size()); // Output: 2
     }
 }
 ```
 
-Example: Reading a file using the `Scanner` class, writing using the `PrintStream` class, writing using the `FileWriter` class
+3. HashSet Class:
+The HashSet class is an implementation of the Set interface that stores elements in a hash table. <br/>
+It provides constant-time performance for basic operations like adding, removing, and checking for the presence of an element. <br/> 
+The elements in a HashSet are not ordered. <br/>
+
 ```java
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.Scanner;
+import java.util.*;
 
-public class ReadWriteFileExample {
+public class Main {
     public static void main(String[] args) {
-        // Reading from a file using Scanner
-        try {
-            Scanner input = new Scanner(new File("myfile.txt"));
-            while (input.hasNextLine()) {
-                String line = input.nextLine();
-                System.out.println(line);
-            }
-            input.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        HashSet<String> countries = new HashSet<>();
+        
+        // Adding elements
+        countries.add("USA");
+        countries.add("Canada");
+        countries.add("France");
+        countries.add("Germany");
+        
+        // Checking for presence
+        System.out.println(countries.contains("Canada")); // Output: true
+        
+        // Removing elements
+        countries.remove("France");
+        
+        // Iterating over the elements
+        for (String country : countries) {
+            System.out.println(country);
         }
-
-        // Writing to a file using PrintStream
-        try {
-            PrintStream output = new PrintStream("myfile.txt");
-            output.println("Hello, World!");
-            output.println("This is a sample file.");
-            output.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Writing to a file using FileWriter
-        try {
-            FileWriter output = new FileWriter("myfile.txt", false);
-            output.write("This will overwrite the file.");
-            output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+        // Checking the size
+        System.out.println("Size: " + countries.size()); // Output: 3
     }
 }
 ```
-
-In the examples above, the first one uses PrintStream to write lines of text to the file, while the second one uses FileWriter to write a string to the file, overwriting its content. The second argument false in FileWriter indicates that the file should not be appended to, but overwritten.
-
-
 
 <a id="lab"></a>
-## <span style="color:#ADD8E6"> Lab 2 </span> 
+## <span style="color:#ADD8E6"> Lab 3 </span> 
 
-Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065" target="_blank">Handout</a>
+Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065](https://q.utoronto.ca/courses/303347/files/26571834?wrap=1" target="_blank">Handout</a>
 
-
-Commands you need for the lab:
-```shell
- $ git clone <RepoURL>  #Clone the repo of Lab 1 
- $ cd b07lab1   #Change Directory to b07lab1
- $ git checkout -b lab2   #Create a branch named lab2 and switch to the branch
- $ git add *.java   #adds/stages all the files with .java extension for commit
- $ git commit -m "modified Polynomial.java and Driver.java"   #save staged changes as a new commit in the Git repository with the commit message
- $ git push --set-upstream origin lab2   #push the commits from your local "lab2" branch to the "origin" remote repository
-```
-
-Note: 
-
-By running git push --set-upstream origin lab, you are pushing the commits from your local "lab2" branch to the "origin" remote repository, and also setting the tracking relationship between the local "lab" branch and the remote branch with the same name.
-
-Setting the upstream branch allows you to use subsequent git push or git pull commands without specifying the remote repository and branch name each time. Once the tracking relationship is established, you can simply use git push or git pull to push or pull changes to and from the upstream branch.
-
-It's worth noting that the first time you push a branch to a remote repository, you need to use the --set-upstream option to set the tracking relationship. After that, subsequent pushes and pulls can be done with just git push and git pull.
 
 
 <a id="tutorial"></a>
