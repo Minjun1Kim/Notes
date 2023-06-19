@@ -22,7 +22,8 @@
 <a id="SRP"></a>
 ### <span style="color:#ADD8E6">Single Responsibility Principle (SRP): </span> 
 
-A class should have only one reason to change, meaning it should have only one responsibility. This principle promotes high cohesion and makes classes easier to understand, maintain, and test.
+A class should have only one reason to change, meaning it should have only one responsibility. This principle promotes high cohesion and makes classes easier to understand, maintain, and test. <br/>
+
 Example:
 ```java
 // Incorrect implementation violating SRP
@@ -53,6 +54,8 @@ class EmailService {
     }
 }
 ```
+Explanation: In the updated implementation, the responsibilities of calculating the total price and sending confirmation emails are separated into two different classes. This adheres to the SRP, as each class now has a single responsibility.
+
 
 <a id="OCP"></a>
 ### <span style="color:#ADD8E6">Open-Closed Principle (OCP) </span> 
@@ -64,6 +67,15 @@ class DiscountCalculator {
     double calculateDiscount(double totalPrice) {
         // Calculate discount based on some condition
         // Code for specific discount calculation
+        if (percentageDiscount) {
+          // logic
+        } else if (flatDiscount) {
+          // logic
+        } else if (...) {
+          // logic
+        } else {
+
+        }
     }
 }
 ```
@@ -97,6 +109,7 @@ Explanation: In the updated implementation, the DiscountCalculator class is repl
 
 Liskov Substitution Principle (LSP):
 Subtypes must be substitutable for their base types without affecting the correctness of the program. This principle ensures that objects of derived classes can be used interchangeably with objects of the base class without causing unexpected behavior.
+
 Example:
 
 ```java
@@ -216,57 +229,81 @@ Explanation: In the updated implementation, the Order interface is divided into 
 ### <span style="color:#ADD8E6">Dependency Inversion Principle (DIP) </span> 
 
 High-level modules should not depend on low-level modules. Both should depend on abstractions. This principle promotes loose coupling and allows for easier modification and testing of code.
+
+High-level modules contain the important policy decisions and business models of an application – The identity of the application. <br/>
+Low-level modules contain detailed implementations of individual mechanisms needed to realize the policy. <br/>
+
+When high-level modules directly depend on low-level modules, it creates a tight coupling between them. This tight coupling can lead to several issues and make the software system more rigid and difficult to maintain.
+
+Lack of Flexibility: When high-level modules directly depend on low-level modules, any changes or updates to the low-level modules can have a cascading effect on the high-level modules. This reduces the flexibility of the system and makes it harder to introduce new features or modify existing ones.
+
+Limited Reusability: When high-level modules directly depend on low-level modules, it becomes difficult to reuse those high-level modules in different contexts or with different low-level implementations. The coupling restricts the flexibility to swap out low-level components or adapt the system to different environments.
+
+Code Fragility: Changes in low-level modules can unintentionally break the functionality of high-level modules, even if the change is unrelated to their specific behavior. This fragility makes the system more prone to bugs and increases the risk of introducing unintended side effects.
+
+By applying the Dependency Inversion Principle (DIP), which suggests that both high-level and low-level modules should depend on abstractions, these issues can be mitigated. The use of abstractions (interfaces or abstract classes) allows for loose coupling, promotes modularity, and facilitates easier testing, maintainability, and reusability of the system.
+
 Example:
 ```java
-// Incorrect implementation violating DIP
-class EmailService {
-    void sendEmail(String recipient, String message) {
-        // Code for sending email
+// Violation of DIP
+
+// Low-level module
+class MySQLDatabase {
+    public void save(Order order) {
+        // Save order to MySQL database
     }
 }
 
-class OrderProcessor {
-    private EmailService emailService;
+// High-level module
+class OrderService {
+    private MySQLDatabase database; // Low-level module dependency
 
-    OrderProcessor() {
-        emailService = new EmailService();
+    public OrderService() {
+        this.database = new MySQLDatabase();
     }
 
-    void processOrder(Order order) {
-        // Process order logic
-        emailService.sendEmail(order.getCustomerEmail(), "Your order has been processed.");
+    public void saveOrder(Order order) {
+        // Save order to MySQL database
+        database.save(order);
     }
 }
 ```
-Explanation: In the above example, the OrderProcessor class depends on the EmailService class concretely. This violates the DIP as it tightly couples the high-level module (OrderProcessor) with the low-level module (EmailService). To adhere to the DIP, we need to introduce abstractions and use dependency injection.
+Explanation: In the above example, the OrderService high-level module directly depends on the MySQLDatabase low-level module. This violates the DIP because the high-level module depends on a specific concrete implementation of the database.
+
 
 ```java
-// Correct implementation following DIP
-interface EmailService {
-    void sendEmail(String recipient, String message);
+// Corrected implementation
+
+// Low-level module
+interface Database {
+    void save(Order order);
 }
 
-class DefaultEmailService implements EmailService {
-    void sendEmail(String recipient, String message) {
-        // Code for sending email
+// Concrete implementation of Database for MySQL
+class MySQLDatabase implements Database {
+    public void save(Order order) {
+        // Save order to MySQL database
     }
 }
 
-class OrderProcessor {
-    private EmailService emailService;
+// High-level module
+class OrderService {
+    private Database database; // Dependency on abstraction
 
-    OrderProcessor(EmailService emailService) {
-        this.emailService = emailService;
+    public OrderService(Database database) {
+        this.database = database;
     }
 
-    void processOrder(Order order) {
-        // Process order logic
-        emailService.sendEmail(order.getCustomerEmail(), "Your order has been processed.");
+    public void saveOrder(Order order) {
+        // Save order using the injected database
+        database.save(order);
     }
 }
 ```
 
-Explanation: In the updated implementation, an EmailService interface is introduced, which is implemented by the DefaultEmailService class. The OrderProcessor class now depends on the abstraction (EmailService) instead of the concrete implementation. The dependency is injected into the OrderProcessor class through its constructor, promoting loose coupling and adhering to the DIP.
+Explanation: In the corrected implementation, the OrderService high-level module depends on the Database interface, which is an abstraction. The concrete implementation of the database, MySQLDatabase, implements the Database interface. The dependency is injected into the OrderService through its constructor, allowing different implementations of the database to be used without modifying the high-level module.
+
+This adherence to the DIP improves modularity, flexibility, and testability. It decouples the high-level module from specific low-level implementations, enabling easier maintenance and future changes. It also promotes reusability by allowing different implementations of the Database interface to be used in different contexts.
 
 <a id="tips"></a>
 ### <span style="color:#ADD8E6"> Tips on recognizing violations of SOLID principles </span> 
@@ -344,5 +381,5 @@ In general, use abstract classes when you want to provide a base implementation 
 Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065](https://q.utoronto.ca/courses/303347/files/26571834?wrap=1" target="_blank">Handout</a>
 
 
-
+Resources: <a href="http://stg-tud.github.io/sedc/Lecture/ws13-14/3.5-DIP.html#mode=document"> DIP </a>
   
