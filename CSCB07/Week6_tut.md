@@ -301,6 +301,43 @@ Explanation: In the updated implementation, an EmailService interface is introdu
 - Introduce abstractions (interfaces or abstract classes) to represent dependencies.
 - Use dependency injection or inversion of control to provide implementations to the dependent classes.
 
+
+<a id="tips"></a>
+### <span style="color:#ADD8E6"> Abstract Class VS Interface </span> 
+
+#### <span style="color:#ADD8E6"> Abstract Class</span> 
+
+- An abstract class is a class that cannot be instantiated and serves as a blueprint for derived classes.
+- It can contain both abstract and non-abstract methods.
+- It can have instance variables and constructors.
+- It may provide default implementations for some or all of its methods.
+- It can enforce or provide common behavior for its derived classes.
+- A class can inherit from only one abstract class.
+
+Use cases for Abstract Classes:
+
+- When you want to provide a common base implementation for a group of related classes.
+- When you have some methods that can be fully implemented in the base class and other methods that should be implemented in the derived classes.
+- When you want to define common state or behavior that derived classes can inherit.
+  
+#### <span style="color:#ADD8E6"> Interface </span> 
+
+- An interface is a contract that defines a set of methods that a class must implement.
+- It cannot have instance variables or constructors.
+- All methods in an interface are implicitly abstract and public.
+- It cannot provide default implementations for methods.
+- A class can implement multiple interfaces.
+  
+Use cases for Interfaces:
+
+- When you want to define a contract that specifies a set of behaviors that a class must implement.
+- When you want to provide a common behavior across unrelated classes.
+- When you want to achieve multiple inheritances since a class can implement multiple interfaces.
+- When you want to enable loose coupling by programming to interfaces rather than concrete classes.
+
+In general, use abstract classes when you want to provide a base implementation and define a relationship between classes, and use interfaces when you want to define a contract that can be implemented by multiple unrelated classes. Abstract classes are more suitable when you have a "is-a" relationship, while interfaces are more suitable when you have a "can-do" relationship.
+
+
 <a id="lab"></a>
 ## <span style="color:#ADD8E6"> Lab 3 </span> 
 
