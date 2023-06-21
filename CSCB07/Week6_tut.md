@@ -105,9 +105,8 @@ Explanation: In the updated implementation, the DiscountCalculator class is repl
 
 
 <a id="LSP"></a>
-### <span style="color:#ADD8E6">Inheritance </span> 
+### <span style="color:#ADD8E6"> Liskov Substitution Principle (LSP): </span> 
 
-Liskov Substitution Principle (LSP):
 Subtypes must be substitutable for their base types without affecting the correctness of the program. This principle ensures that objects of derived classes can be used interchangeably with objects of the base class without causing unexpected behavior.
 
 Example:
