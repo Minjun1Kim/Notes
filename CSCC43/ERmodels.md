@@ -94,117 +94,25 @@ Example:
 - Attributes not necessary on relationships, can instead create another entity set `Salaries` with attribute `Salary`
 
 <a id="DIP"></a>
-### <span style="color:#ADD8E6">Dependency Inversion Principle (DIP) </span> 
+### <span style="color:#ADD8E6"> Converting Multiway Relationships to Binary </span> 
 
-High-level modules should not depend on low-level modules. Both should depend on abstractions. This principle promotes loose coupling and allows for easier modification and testing of code.
+- any relationship connecting more than two entity sets can be converted to a collection of binary, many-one relationships.
 
-High-level modules contain the important policy decisions and business models of an application – The identity of the application. <br/>
-Low-level modules contain detailed implementations of individual mechanisms needed to realize the policy. <br/>
-
-When high-level modules directly depend on low-level modules, it creates a tight coupling between them. This tight coupling can lead to several issues and make the software system more rigid and difficult to maintain.
-
-Lack of Flexibility: When high-level modules directly depend on low-level modules, any changes or updates to the low-level modules can have a cascading effect on the high-level modules. This reduces the flexibility of the system and makes it harder to introduce new features or modify existing ones.
-
-Limited Reusability: When high-level modules directly depend on low-level modules, it becomes difficult to reuse those high-level modules in different contexts or with different low-level implementations. The coupling restricts the flexibility to swap out low-level components or adapt the system to different environments.
-
-Code Fragility: Changes in low-level modules can unintentionally break the functionality of high-level modules, even if the change is unrelated to their specific behavior. This fragility makes the system more prone to bugs and increases the risk of introducing unintended side effects.
-
-By applying the Dependency Inversion Principle (DIP), which suggests that both high-level and low-level modules should depend on abstractions, these issues can be mitigated. The use of abstractions (interfaces or abstract classes) allows for loose coupling, promotes modularity, and facilitates easier testing, maintainability, and reusability of the system.
-
-Example:
-```java
-// Violation of DIP
-
-// Low-level module
-class MySQLDatabase {
-    public void save(Order order) {
-        // Save order to MySQL database
-    }
-}
-
-// High-level module
-class OrderService {
-    private MySQLDatabase database; // Low-level module dependency
-
-    public OrderService() {
-        this.database = new MySQLDatabase();
-    }
-
-    public void saveOrder(Order order) {
-        // Save order to MySQL database
-        database.save(order);
-    }
-}
-```
-Explanation: In the above example, the OrderService high-level module directly depends on the MySQLDatabase low-level module. This violates the DIP because the high-level module depends on a specific concrete implementation of the database.
-
-
-```java
-// Corrected implementation
-
-// Low-level module
-interface Database {
-    void save(Order order);
-}
-
-// Concrete implementation of Database for MySQL
-class MySQLDatabase implements Database {
-    public void save(Order order) {
-        // Save order to MySQL database
-    }
-}
-
-// High-level module
-class OrderService {
-    private Database database; // Dependency on abstraction
-
-    public OrderService(Database database) {
-        this.database = database;
-    }
-
-    public void saveOrder(Order order) {
-        // Save order using the injected database
-        database.save(order);
-    }
-}
-```
-
-Explanation: In the corrected implementation, the OrderService high-level module depends on the Database interface, which is an abstraction. The concrete implementation of the database, MySQLDatabase, implements the Database interface. The dependency is injected into the OrderService through its constructor, allowing different implementations of the database to be used without modifying the high-level module.
-
-This adherence to the DIP improves modularity, flexibility, and testability. It decouples the high-level module from specific low-level implementations, enabling easier maintenance and future changes. It also promotes reusability by allowing different implementations of the Database interface to be used in different contexts.
+<img width="867" alt="image" src="https://github.com/Minjun1Kim/Notes/assets/104747956/2b8ef577-abc7-415e-b9d0-e4a6eae7e301">
 
 <a id="tips"></a>
-### <span style="color:#ADD8E6"> Tips on recognizing violations of SOLID principles </span> 
+### <span style="color:#ADD8E6"> Subclasses in the E/R Model </span> 
 
-1. Single Responsibility Principle (SRP):
-- Look for classes or methods that have multiple responsibilities or reasons to change.
-- Identify cohesive tasks or responsibilities within the code.
-- Extract separate classes or methods for each responsibility.
-- Ensure that each class or method has a single, well-defined responsibility.
+- An entity set may contain certain entities with special properties not associated with all members of the set.
+- Useful to define certain special-case entity sets, or subclasses, each with its own special attributes and/or relationships.
+- Connect an entity set to its subclasses using an `isa` relationship.
+- "An A is a B": `isa` relationship from entity set A to entity set B.
+- `isa` relationship represented by a triangle with one side attached to the subclass and the opposite point connected to the superclass.
+- Every `isa` relationship is `one-one` (although not explicitly shown with arrows).
 
-2. Open/Closed Principle (OCP):
-- Identify areas of the code that require modification when new functionality is added.
-- Look for conditional statements or switch cases that handle different variations of behavior.
-- Apply abstraction and create interfaces or base classes to define common behavior.
-- Use inheritance or composition to extend functionality without modifying existing code.
-  
-3. Liskov Substitution Principle (LSP):
-- Identify classes that are derived from a base class or implement an interface.
-- Look for overridden methods that change the preconditions, postconditions, or invariants defined in the base class or interface.
-- Ensure that derived classes can be used interchangeably with the base class or interface without causing unexpected behavior.
-- Refactor the code to adhere to the contract defined by the base class or interface.
-  
-4. Interface Segregation Principle (ISP):
-- Identify interfaces that are large and have multiple methods.
-- Look for clients that depend on these interfaces but only use a subset of the methods.
-- Split the large interfaces into smaller, more focused interfaces.
-- Refactor the code to use the smaller interfaces based on specific client needs.
-  
-5. Dependency Inversion Principle (DIP):
-- Identify classes or modules that depend on concrete implementations.
-- Look for tight coupling between high-level and low-level modules.
-- Introduce abstractions (interfaces or abstract classes) to represent dependencies.
-- Use dependency injection or inversion of control to provide implementations to the dependent classes.
+- A colection of entity sets connected by `isa` relationships could have any structure, limit isa-structures to trees in which there is one **root** entity set that is the most general (i.e. movies) with progressively more specialized entity sets extending below the root in a tree.
+
+<img width="614" alt="image" src="https://github.com/Minjun1Kim/Notes/assets/104747956/fb69de92-89c1-4f89-905d-95908461ad86">
 
 
 <a id="tips"></a>
@@ -244,10 +152,23 @@ In general, use abstract classes when you want to provide a base implementation 
 
 
 <a id="lab"></a>
-## <span style="color:#ADD8E6"> Lab 3 </span> 
+### <span style="color:#ADD8E6"> Design Principles </span> 
 
-Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065](https://q.utoronto.ca/courses/303347/files/26571834?wrap=1" target="_blank">Handout</a>
+1. Faithfulness
 
+The design should be faithful to the specifications of the application; entity sets and their attributes should reflect reality.
+- A relationship `Stars in` between Stars and Movies should be a many-many relationship.
 
-Resources: <a href="http://stg-tud.github.io/sedc/Lecture/ws13-14/3.5-DIP.html#mode=document"> DIP </a>
+2. Simplicity Counts
+
+Avoid introducing more elements into your design thatn is absolute necessary.
+
+3. Choosing the right relationships.
+
+Adding to our design every possible relationship is not often a good idea as it can lead to redundancy, where the connected pairs or sets of entiteis for one relationship can be deduced from one or more other relationships.
+- resulting database could require much more space to store redundant elements, and modifying DB could become complex.
+
+4. Picking the right kind of element
+- 
+
   
