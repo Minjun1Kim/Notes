@@ -13,8 +13,53 @@
 
 
 <a id="notes"></a>
-## <span style="color:#ADD8E6"> SOLID principles Notes </span> 
+## <span style="color:#ADD8E6"> Entity-Relationship Model Notes </span> 
 
+`Entity`: a "thing" in the real world with an independent existence.
+- May be an object with physical existence (ex: house, person) or with a conceptual existence (course, job).
+
+`Attributes`: properties that describe the entities.
+
+- Composite attribute: can be divided into further parts
+- Name -> first name, middle name, last name
+
+- Simple attribute: cannot be divided further
+- Weight -> cannot be divided further.
+
+- Single-valued attributes: have a single value for a particular entity.
+- age -> single-valued attribute of a person.
+
+- Multivalued attributes: can have set of values for a particular entity.
+- College degree, languages known
+
+- Derived Attributes: can be derived from other attributes.
+- age -> can be derived from date of birth
+
+- Stored Attributes: from which the value of other attributes are derived.
+- Ex: BirthDate of a person
+
+- Complex Attributes
+- has multivalued & composite components in it.
+- Multivalued attributes are represented within `{ }`.
+- Composite attributes are represented within  `( )`.
+- Ex: {CollegeDegrees(College, Year, Degree, Field)}
+
+- Null values
+- Null is something which is not applicable or unknown.
+
+
+'Entity type': a collection of entities that have the same attributes.
+'Entity set': a collection of entities of a particular entity type at a point in time.
+
+`Key attribute`: the attribute that is capable of identifying each entity uniquely.
+
+`Value Set of Attributes`: the set of values that can be assigned to an attribute.
+
+`Weak entity type`: entity types that do not have key attributes of their own.
+- Identified by relating to another entity type called the identifying or the owner entity type.
+- Relationship between weak entity type to its owner -> identifying relationship.
+
+  
 <a id="SRP"></a>
 ### <span style="color:#ADD8E6">Multiplicity of Binary E/R Relationships</span> 
 
