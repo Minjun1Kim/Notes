@@ -304,7 +304,7 @@ Explanation: In the corrected implementation, the OrderService high-level module
 
 This adherence to the DIP improves modularity, flexibility, and testability. It decouples the high-level module from specific low-level implementations, enabling easier maintenance and future changes. It also promotes reusability by allowing different implementations of the Database interface to be used in different contexts.
 
-<a id="tips"></a>
+
 ### <span style="color:#ADD8E6"> Tips on recognizing violations of SOLID principles </span> 
 
 1. Single Responsibility Principle (SRP):
