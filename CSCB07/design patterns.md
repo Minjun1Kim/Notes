@@ -32,7 +32,7 @@ Creational design patterns focus on the object creation process. They provide me
 The Singleton pattern ensures that a class has only one instance and provides a global point of access to that instance. It is useful in scenarios where a single instance is required to control actions throughout the system.
 
 ```java
-public class Singleton {
+public final class Singleton {
     private static Singleton instance;
 
     private Singleton() {
