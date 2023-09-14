@@ -8,6 +8,15 @@
   - [Overview of Java](#java)
   - [Steps to running a program](#run)
   - [IDE](#ide)
+  - [Primary Data Types](#prime)
+  - [Objects and Classes](#obj-class)
+  - [Instantiation of Objects](#inst)
+  - [The Main Method](#main)
+  - [Java Memory Model](#mem)
+  - [Differnece: Primitive Types vs. Reference Types](#prim-ref)
+  - [Default Values](#default)
+  - [Keywords](#keywords)
+  - [Arrays](#arrays)
   - [I/O](#IO)
 - [Lab](#lab)
 - [Tutorial](#tutorial)
@@ -56,16 +65,116 @@ $ java helloWorld
 <a id="prime"></a>
 ### <span style="color:#ADD8E6"> Primitive Data Types </span> 
 - a set of built-in data types for representing fundamental values.
-- divided into three categories:
+- divided into two main categories:
   - Numeric Primitive Types:
-    - `byte`, `short`, `int`, `long`, `float`, `double`
-  - Character Type:
-    - `char`
+    - `char`, `byte`, `short`, `int`, `long`, `float`, `double`
   - Boolean Type:
     - `boolean` 
 
+![image](https://github.com/Minjun1Kim/Notes/assets/104747956/98107602-346c-4fcb-9edd-c8876cb0f2f0)
+
+<a id="obj-class"></a>
+### <span style="color:#ADD8E6"> Objects and Classes </span> 
+- An object is an instance of a class.
+- Classes serve as blueprints for creating objects, define the structure and behaviour of objects.
+
+Example:
+```java
+public class Person {
+    // Data fields (instance variables)
+    String name;
+    int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Method
+    public void greet() {
+        System.out.println("Hello, my name is " + name + " and I am " + age + " years old.");
+    }
+}
+```
+<a id="inst"></a>
+### <span style="color:#ADD8E6"> Instantiation of Objects </span> 
+- To create an object from a class, you use the new keyword followed by the class constructor.
+
+Example:
+```java
+Person person1 = new Person("Alice", 30);
+```
+
+<a id="main"></a>
+### <span style="color:#ADD8E6"> The 'main' method </span> 
+
+- the `main` method of a program serves as the entry point for the program.
+- has the following signature:
+  
+```java
+public static void main(String[] args) {
+    // code
+}
+```
+
+- the args parameter allows you to pass command-line arguments to your program.
+
+<a id="mem"></a>
+### <span style="color:#ADD8E6"> Java Memory Model </span> 
+
+- Java manages memory using a heap and a stack.
+- the heap stores objects and dynamically allocated data
+- the stack handles method calls and local variables.
+- Objects created with the new keyword are stored in the heap, and references to these objects are stored on the stack.
+
+<a id="prim-ref"></a>
+### <span style="color:#ADD8E6"> Differnece: Primitive Types vs. Reference Types </span> 
+- Variables of primitive types hold the actual value
+- variables of reference types store references (memory addresses) to objects.
+- When you assign a primitive variable to another, you copy the value.
+- When you assign a reference variable to another, you copy the reference, not the object itself.
+
+<a id="default"></a>
+### <span style="color:#ADD8E6"> Default Values </span> 
+- Java assigns default values to variables based on their data types.
+- Numeric types are initialized to 0
+- Booleans initialized to false
+- Object references to null.
+  - includes String
+- Note (for `char`): `'\u0000'`
 
 
+<a id="keywords"></a>
+### <span style="color:#ADD8E6"> Keywords </span> 
+
+#### the `this` reference
+- Inside a class, this refers to the current instance of the class.
+- Often used to distinguish between instance variables and method parameters with the same name.
+
+#### the `static` modifier
+- used to define class-level members (variables and methods) that are shared among all instances of the class.
+- members are accessed using the class name, not an instance.
+
+```java
+public class MyClass {
+    int x;
+    static int count; // A static variable shared by all instances
+
+    public MyClass(int x) {
+        this.x = x;
+    }
+
+    public static void incrementCount() {
+        count++;
+    }
+}
+```
+
+- count is a static variable, and incrementCount is a static method.
+
+<a id="arrays"></a>
+### <span style="color:#ADD8E6"> Arrays </span> 
 
 To create an array and allocate memory, use the new keyword.
 ```java
@@ -102,11 +211,11 @@ for (int score : grades) {
 }
 ```
 
-
 <a id="IO"></a>
-### <span style="color:#ADD8E6">Input and Output Operations in Java</span> 
+### <span style="color:#ADD8E6"> Input and Output Operations in Java</span> 
 
-Java provides various classes and methods for performing input and output operations. Here are some commonly used components:
+Java provides various classes and methods for performing input and output operations. <br />
+Here are some commonly used components:
 
 `System.in` represents the standard input stream, which allows reading input from the user. <br>
 `System.out` represents the standard output stream, which is used for displaying output to the console. <br>
@@ -251,31 +360,18 @@ public class ReadWriteFileExample {
 In the examples above, the first one uses PrintStream to write lines of text to the file, while the second one uses FileWriter to write a string to the file, overwriting its content. The second argument false in FileWriter indicates that the file should not be appended to, but overwritten.
 
 
-
 <a id="lab"></a>
-## <span style="color:#ADD8E6"> Lab 2 </span> 
+## <span style="color:#ADD8E6"> Lab 1 </span> 
 
-Instructions: <a href="https://q.utoronto.ca/courses/303347/assignments/1082952?module_item_id=4717065" target="_blank">Handout</a>
+Instructions: <a href="https://q.utoronto.ca/courses/311857/assignments/1151570?module_item_id=5041351" target="_blank">Handout</a>
 
 
 Commands you need for the lab:
 ```shell
- $ git clone <RepoURL>  #Clone the repo of Lab 1 
- $ cd b07lab1   #Change Directory to b07lab1
- $ git checkout -b lab2   #Create a branch named lab2 and switch to the branch
- $ git add *.java   #adds/stages all the files with .java extension for commit
- $ git commit -m "modified Polynomial.java and Driver.java"   #save staged changes as a new commit in the Git repository with the commit message
- $ git push --set-upstream origin lab2   #push the commits from your local "lab2" branch to the "origin" remote repository
+ $ git add *.java  #adds new/changed files in working directory to the staging area
+ $ git commit -m "added Polynomial.java and Driver.java"   #save staged changes as a new commit in the Git repository with the commit message
+ $ git push  #push to the remote repository
 ```
-
-Note: 
-
-By running git push --set-upstream origin lab, you are pushing the commits from your local "lab2" branch to the "origin" remote repository, and also setting the tracking relationship between the local "lab" branch and the remote branch with the same name.
-
-Setting the upstream branch allows you to use subsequent git push or git pull commands without specifying the remote repository and branch name each time. Once the tracking relationship is established, you can simply use git push or git pull to push or pull changes to and from the upstream branch.
-
-It's worth noting that the first time you push a branch to a remote repository, you need to use the --set-upstream option to set the tracking relationship. After that, subsequent pushes and pulls can be done with just git push and git pull.
-
 
 <a id="tutorial"></a>
 ## <span style="color:#ADD8E6"> Tutorial </span> 
